@@ -87,5 +87,5 @@ module.exports = function(grunt) {
   grunt.registerTask('build:dev', ['clean', 'copy:dev']);
 	grunt.registerTask('build:release', ['clean', 'copy:release', 'uglify:release']);
 
-	grunt.registerTask('rebuild:release', ['clean:run', 'build:release']);	
+	grunt.registerTask('rebuild:release', ['clean:run', 'build:release']);
 };
