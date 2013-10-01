@@ -5,46 +5,67 @@ module.exports = function(grunt) {
 		
 		pkg: grunt.file.readJSON('package.json'),
 
+    /**
+     * configuration
+     */
 		configs:{
-			vendorsFilesToCopy : {src: 'bower_components/jquery/jquery.min.js', dest: 'www/scripts/jquery.min.js'},
-			assetsFilesToCopy : {expand: true, cwd: 'assets/', src: ['**'], dest: 'www/'},
-			filesToUglify : {'www/scripts/app.js': ['src/scripts/*.js']},
-			folderToClean : ['www/*']
+			bower : 'bower_components',
+			wwwFolder : 'www',
+			assetsFolder : 'assets',
+      vendors: 'www/scripts/vendors'
 		},
 
+    /**
+     * connect task
+     * expose base folder as public.
+     */
 		connect: {
 		  server: {
 		    options: {
 		      	port: 3000,
 		      	base: 'www',
-				keepalive: true
+				    keepalive: true
 		    }
 		  }
 		},
-			
+		
+    /**
+     * copy task
+     */
 		copy: {
-			assets: {
-				files: [
-					'<%= configs.assetsFilesToCopy %>'
-				]
-			},
-			vendors: {
-				files: [
-					'<%= configs.vendorsFilesToCopy %>'
-				]
-			},
 			dev: {
-			
-			}
+          files: [
+            {src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.js', dest: '<%= configs.vendors %>/bootstrap.js'},
+            {src: '<%= configs.bower %>/jquery/jquery.js', dest: '<%= configs.vendors %>/jquery.js'},
+            {src: '<%= configs.bower %>/angular/angular.js', dest: '<%= configs.vendors %>/angular.js'},
+
+            {expand: true, cwd: '<%= configs.assetsFolder %>/', src: ['**'], dest: '<%= configs.wwwFolder %>/'}
+          ]
+			},
+      release: {
+          files: [
+            {src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.min.js', dest: '<%= configs.vendors %>/bootstrap.js'},
+            {src: '<%= configs.bower %>/jquery/jquery.min.js', dest: '<%= configs.vendors %>/jquery.min.js'},
+            {src: '<%= configs.bower %>/angular/angular.min.js', dest: '<%= configs.vendors %>/angular.min.js'},
+
+            {expand: true, cwd: '<%= configs.assetsFolder %>/', src: ['**'], dest: '<%= configs.wwwFolder %>/'}
+          ]
+      }
 		},
-			
+		
+    /**
+     * clean tasks
+     */
 		clean: {
-			run: '<%= configs.folderToClean %>'
+			run: ['<%= configs.wwwFolder %>/*']
 		},
 
+    /**
+     * minify css tasks
+     */
 		uglify: {
 			release: {
-				files: '<%= configs.filesToUglify %>'
+				files: {'<%= configs.wwwFolder %>/scripts/app.js': ['src/scripts/*.js']}
 			}
 		}
 	});
@@ -57,11 +78,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  	/**
-  	 * register tasks
-  	 */
-  	grunt.registerTask('default', []);
-	grunt.registerTask('run', ['copy:assets', 'copy:vendors', 'connect']);
-	grunt.registerTask('build:release', ['copy:assets', 'copy:vendors', 'uglify:release']);
+	/**
+	 * register tasks
+	 */
+  grunt.registerTask('default', ['clean', 'copy:dev']);
+	grunt.registerTask('run', ['build:dev', 'connect']);
+
+  grunt.registerTask('build:dev', ['clean', 'copy:dev']);
+	grunt.registerTask('build:release', ['clean', 'copy:release', 'uglify:release']);
+
 	grunt.registerTask('rebuild:release', ['clean:run', 'build:release']);	
 };

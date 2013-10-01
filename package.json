@@ -20,7 +20,7 @@
     "url": "https://github.com/gang-of-bb/movies-angular.git"
   },
   "author": "gobb",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gang-of-bb/movies-angular/issues"
   }
