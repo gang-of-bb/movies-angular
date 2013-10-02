@@ -1,5 +1,12 @@
 module.exports = function(grunt) {
 
+	var config = require('./grunt_tasks/config');
+	var copy = require('./grunt_tasks/copy');
+	var connect = require('./grunt_tasks/connect');
+	var concat = require('./grunt_tasks/concat');
+	var uglify = require('./grunt_tasks/uglify');
+	var clean = require('./grunt_tasks/clean');
+
 	// Project configuration.
 	grunt.initConfig({
 		
@@ -8,89 +15,32 @@ module.exports = function(grunt) {
 	    /**
 	     * configuration
 	     */
-		configs:{
-			bower : 'bower_components',
-			wwwFolder : 'www',
-			assetsFolder : 'assets',
-      		vendors: 'www/scripts/vendors',
-      		templatesDest : 'www/templates/',
-      		templatesSrc : 'src/scripts/templates/'
-		},
-
-	    /**
-	     * connect task
-	     * expose base folder as public.
-	     */
-		connect: {
-		  server: {
-		    options: {
-		      	port: 3000,
-		      	base: 'www',
-				    keepalive: true
-		    }
-		  }
-		},
-
-		concat: {
-			dev:{
-				src: ['src/scripts/require-config.js', 'src/scripts/kernel.js'],
-				dest: 'www/scripts/index.js'
-			}
-		},
+		configs: config,
 
 	    /**
 	     * copy task
 	     */
-		copy: {
-			dev: {
-	          files: [
-	            {src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.js', dest: '<%= configs.vendors %>/bootstrap.js'},
-	            {src: '<%= configs.bower %>/jquery/jquery.js', dest: '<%= configs.vendors %>/jquery.js'},
-	            {src: '<%= configs.bower %>/angular/angular.js', dest: '<%= configs.vendors %>/angular.js'},
-	            {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
+		copy: copy,
 
-				{expand: true, cwd: 'src/scripts/',src: ['**'], dest: '<%= configs.wwwFolder %>/scripts/'},	            
+		/**
+		 * connect config task
+		 */
+		connect: connect,
 
-	            {src: '<%= configs.bower %>/bootstrap/dist/css/bootstrap.css', dest: '<%= configs.wwwFolder %>/styles/bootstrap.css'},
-	            {expand: true, cwd: '<%= configs.bower %>/bootstrap/dist/fonts/', src: ['**'], dest: '<%= configs.wwwFolder %>/fonts/'},
-
-	            {expand: true, cwd: '<%= configs.assetsFolder %>/', src: ['**'], dest: '<%= configs.wwwFolder %>/'},
-
-	            {expand: true, cwd: '<%= configs.templatesSrc %>', src: ['**'], dest: '<%= configs.templatesDest %>'}
-	          ]
-			},
-	      release: {
-	          files: [
-	            {src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.min.js', dest: '<%= configs.vendors %>/bootstrap.js'},
-	            {src: '<%= configs.bower %>/jquery/jquery.min.js', dest: '<%= configs.vendors %>/jquery.js'},
-	            {src: '<%= configs.bower %>/angular/angular.min.js', dest: '<%= configs.vendors %>/angular.js'},
-	            {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
-
-	            {src: '<%= configs.bower %>/bootstrap/dist/css/bootstrap.css', dest: '<%= configs.wwwFolder %>/styles/bootstrap.css'},
-	            {expand: true, cwd: '<%= configs.bower %>/bootstrap/dist/fonts/', src: ['**'], dest: '<%= configs.wwwFolder %>/fonts/'},
-
-	            {expand: true, cwd: '<%= configs.assetsFolder %>/', src: ['**'], dest: '<%= configs.wwwFolder %>/'},
-
-	            {expand: true, cwd: '<%= configs.templatesSrc %>', src: ['**'], dest: '<%= configs.templatesDest %>'}
-	          ]
-	      }
-		},
+		/**
+		 * concat config  tasks
+		 */
+		concat: concat,
 		
 	    /**
-	     * clean tasks
+	     * clean config  tasks
 	     */
-		clean: {
-			run: ['<%= configs.wwwFolder %>/*']
-		},
+		clean: clean,
 
 	    /**
-	     * minify css tasks
+	     * minify css config tasks
 	     */
-		uglify: {
-			release: {
-				files: {'<%= configs.wwwFolder %>/scripts/app.js': ['src/scripts/*.js']}
-			}
-		}
+	    uglify : uglify
 	});
 
 	/**
