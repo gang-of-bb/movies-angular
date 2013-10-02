@@ -1,5 +1,23 @@
-<h3>{{title}}</h3>
+<div class="page-header">
+	<h1 class="text-info">movies ({{movies.length}})</h1>
+</div>
 
-<ul>
-	<li ng-repeat="movie in movies" ng-click="remove(movie)">{{movie}}</li>
-</ul>
+<div>
+  <div ng-repeat="movie in movies">
+      <div class="panel panel-default pull-left">
+        <div class="panel-heading"><h3 class="text-primary">{{movie}}</h3></div>
+        <div class="panel-body">
+          
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group">
+            <a ng-click="remove(movie)" class="btn btn-danger btn-sm">delete</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <div ng-show="movies.length == 0">
+      <h3>No movies in your list</h3>
+    </div>
+</div>

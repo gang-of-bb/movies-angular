@@ -1,5 +1,5 @@
 /**
- * TODO
+ * gobbmovies router.
  */
 define(['app', 'controllers/movieController'] , function (gobbmovies, movieController) {
 	return gobbmovies.config(['$routeProvider', function ($routeProvider) {

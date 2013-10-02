@@ -1,7 +1,7 @@
 /**
- * gobbmovies angular application.
+ * gobbmovies kernel.
  */
-require(['jQuery', 'angular', 'router'], function($, angular, router){
+require(['jQuery', 'angular', 'router', 'bootstrap'], function($, angular, router, bootstrap){
 	$(function () {
     	angular.bootstrap(document , ['gobbmovies']);
   	});

@@ -6,7 +6,7 @@ define(['app'], function(gobbmovies){
 		 * Attributes
 		 */
 		$scope.title = "cool angularjs";
-    	$scope.movies = ["cool","yeah","top"];
+    	$scope.movies = ["themouette","fredgate","bhtz", "cireme"];
 
     	/**
     	 * functions

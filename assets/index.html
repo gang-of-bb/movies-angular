@@ -1,12 +1,41 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>movies-angular</title>
-</head>
-<body>
-	<h1>movies-angular</h1>
+  <head>
+    <title>microscopejs - MVC nodejs framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/application.css">
+    <link href="/styles/bootstrap.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
 
-	<div ng-view></div>
+		<nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">
+						AngularJS
+					</a>
+				</div>
 
-	<script type="text/javascript" src="/scripts/vendors/require.js" data-main="/scripts/index.js"></script>
-</body>
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+				    <ul class="nav navbar-nav">
+				    	<li><a href="#/">movies</a></li>
+				    </ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row">
+				<div ng-view ></div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="/scripts/vendors/require.js" data-main="/scripts/index.js"></script>
+  </body>
 </html>
