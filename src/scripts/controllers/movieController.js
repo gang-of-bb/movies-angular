@@ -1,19 +1,28 @@
-define(['app'], function(gobbmovies){
+define(['app', 'services/movieService', 'services/categoryService'], function(gobbmovies, movieService, categoryService){
 
-	gobbmovies.controller('movieController' , ['$scope' , function ($scope) {
+	gobbmovies.controller('movieController' , ['$scope', 'movieService', 'categoryService' , function ($scope, movieService, categoryService) {
 
 		/**
 		 * Attributes
 		 */
-		$scope.title = "cool angularjs";
-    	$scope.movies = ["themouette","fredgate","bhtz", "cireme"];
+    	$scope.movies = [];
+        $scope.categories = [];
+
+        /**
+         * initialization
+         */
+        movieService.getAll(function(data){
+            $scope.movies = data;
+        });
+
+        categoryService.getAll(function(data){
+           $scope.categories = data;
+        });
 
     	/**
     	 * functions
     	 */
-    	$scope.remove = function(movie){
-    		$scope.movies.splice($scope.movies.indexOf(movie), 1 );
-    	}
+
   	}]);
 
 });
