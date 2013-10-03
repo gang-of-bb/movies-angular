@@ -1,6 +1,8 @@
-define(['app', 'services/movieService', 'services/categoryService'], function(gobbmovies, movieService, categoryService){
+define(['app', 'services/movieService', 'services/categoryService'], 
+  function(gobbmovies, movieService, categoryService){
 
-	gobbmovies.controller('movieController' , ['$scope', 'movieService', 'categoryService' , function ($scope, movieService, categoryService) {
+	gobbmovies.controller('movieController' , ['$scope', 'movieService', 'categoryService' , 
+    function ($scope, movieService, categoryService) {
 
 		/**
 		 * Attributes
@@ -11,7 +13,7 @@ define(['app', 'services/movieService', 'services/categoryService'], function(go
       /**
        * initialization
        */
-      movieService.getAll(function(data){
+      movieService.getAll(null, function(data){
           $scope.movies = data;
       });
 
@@ -19,9 +21,25 @@ define(['app', 'services/movieService', 'services/categoryService'], function(go
          $scope.categories = data;
       });
 
-    	/**
-    	 * functions
-    	 */
+      /**
+       * get movies by category id
+       * @param  {[type]} categoryId
+       */
+      $scope.getMoviesByCategory = function(categoryId){
+          var query = '?categoryId='+categoryId;
+          movieService.getAll(query, function(data){
+              $scope.movies = data;
+          });
+      };
+
+      /**
+       * get all movies
+       */
+      $scope.getAllMovies = function(){
+          movieService.getAll(null, function(data){
+              $scope.movies = data;
+          });
+      };
 
   	}]);
 

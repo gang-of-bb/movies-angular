@@ -16,4 +16,5 @@ Requirements
 
 node >= 0.8,
 bower,
-grunt-cli
+grunt-cli,
+npm
