@@ -6,6 +6,8 @@ module.exports = function(grunt) {
 	var concat = require('./grunt_tasks/concat');
 	var uglify = require('./grunt_tasks/uglify');
 	var clean = require('./grunt_tasks/clean');
+	var watch = require('./grunt_tasks/watch');
+	var concurrent = require('./grunt_tasks/concurrent');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -40,7 +42,17 @@ module.exports = function(grunt) {
 	    /**
 	     * minify css config tasks
 	     */
-	    uglify : uglify
+	    uglify : uglify,
+
+	    /**
+	     * watch task
+	     */
+	    watch : watch,
+
+	    /**
+	     * concurrent task
+	     */
+	    concurrent : concurrent
 	});
 
 	/**
@@ -51,11 +63,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-concurrent');
 
 	/**
 	 * register tasks
 	 */
   	grunt.registerTask('default', ['clean', 'copy:dev']);
+	/*grunt.registerTask('run', ['concurrent:run', 'concurrent:watch']);*/
 	grunt.registerTask('run', ['build:dev', 'connect']);
 
  	grunt.registerTask('build:dev', ['clean', 'copy:dev', 'concat:dev']);

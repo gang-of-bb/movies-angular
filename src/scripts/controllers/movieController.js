@@ -6,18 +6,18 @@ define(['app', 'services/movieService', 'services/categoryService'], function(go
 		 * Attributes
 		 */
     	$scope.movies = [];
-        $scope.categories = [];
+      $scope.categories = [];
 
-        /**
-         * initialization
-         */
-        movieService.getAll(function(data){
-            $scope.movies = data;
-        });
+      /**
+       * initialization
+       */
+      movieService.getAll(function(data){
+          $scope.movies = data;
+      });
 
-        categoryService.getAll(function(data){
-           $scope.categories = data;
-        });
+      categoryService.getAll(function(data){
+         $scope.categories = data;
+      });
 
     	/**
     	 * functions
