@@ -1,41 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>microscopejs - MVC nodejs framework</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/styles/application.css">
-    <link href="/styles/bootstrap.css" rel="stylesheet" media="screen">
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Gobb movies</title>
+    	<link rel="stylesheet" type="text/css" href="https://rawgithub.com/gang-of-bb/movies-assets/master/build/gobbmovies.css">
+		<link rel="stylesheet" href="/styles/application.css">
+		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/daneden/animate.css/master/animate.min.css">
   </head>
   <body>
-
-		<nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#/">
-						AngularJS
-					</a>
-				</div>
-
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-				    <ul class="nav navbar-nav">
-				    	<li><a href="#/">movies</a></li>
-				    </ul>
-				</div>
+    <div id="viewport">
+		<nav id="header" class="navbar navbar-primary navbar-static-top" role="navigation">
+			<div class="navbar-header">
+				<img src="/images/48/Movie.png" class="header-logo"/>
+				<a class="navbar-brand" href="#/">							
+					Gobb movies
+				</a>
+			</div>
+			<div class="navbar-right header-user">
+				<span class="navbar-text"><span class="glyphicon glyphicon-user"></span> Jean Bon</span>
 			</div>
 		</nav>
-
-		<div class="container">
-			<div class="row">
+		<div id="content">
+			<div id="mainContent">
 				<div ng-view ></div>
 			</div>
+			<div id="sideContent"></div>
 		</div>
+	</div>
 
-		<script type="text/javascript" src="/scripts/index.js"></script>
+	<script type="text/javascript" src="/scripts/index.js"></script>
   </body>
 </html>

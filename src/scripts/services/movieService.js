@@ -9,8 +9,7 @@ define(['app'], function(gobbmovies){
 		 * @return {[type]}
 		 */
 		this.getAll = function(query, callback){
-			var endpoint = query == null ? host : host+query;
-			$http.get(endpoint).success(function(data, status, headers, config){
+			$http.get(host, {params : query}).success(function(data, status, headers, config){
 				callback(data);
 			});
 		};

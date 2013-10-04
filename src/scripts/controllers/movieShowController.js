@@ -1,7 +1,7 @@
-define(['app', 'services/movieService'], function(gobbmovies, movieService){
+define(['app', 'services/movieService', 'services/commentService'], function(gobbmovies, movieService, commentService){
 
-	gobbmovies.controller('movieShowController' , ['$scope', '$routeParams', 'movieService', 
-		function ($scope, $routeParams, movieService) {
+	gobbmovies.controller('movieShowController' , ['$scope', '$routeParams', 'movieService', 'commentService', 
+		function ($scope, $routeParams, movieService, commentService) {
 
 		var movieId = $routeParams.id;
 
@@ -9,13 +9,28 @@ define(['app', 'services/movieService'], function(gobbmovies, movieService){
 		 * Attributes
 		 */
     	$scope.movie = {};
-    	$scope.comments = [];
 		$scope.newComment = { movieId : movieId, content : ""};
 
-		movieService.get(movieId, function(data){
-			$scope.movie = data;
+		movieService.get(movieId, function(data){ 
+			$scope.movie = data; 
 		});
 
+		/**
+		 * send comment attach to movie
+		 */
+		$scope.sendComment = function(){
+			commentService.add($scope.newComment, function(comment){
+				$scope.newComment.content = "";
+				$scope.movie.comments.items.unshift(comment);
+			});
+		};
+
+		/**
+		 * remove own comment
+		 */
+		$scope.removeComment = function(){
+			
+		};
   	}]);
 
 });

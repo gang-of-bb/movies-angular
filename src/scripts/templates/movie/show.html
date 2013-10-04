@@ -1,49 +1,51 @@
-<div class="page-header">
-	<h1 class="text-info">{{movie.title}} <small> - {{movie.category.name}}</small></h1>
-</div>
+<div class="animated fadeIn">
+	<div class="page-header">
+		<h1 class="text-info">{{movie.title}} <small> - {{movie.category.name}}</small></h1>
+	</div>
 
-<div class="text-center">
+	<div class="text-center">
 
-	<div class="row">
-		<div class="col-md-4 col-sm-12">
-			<img ng-src="{{movie.image}}" class="img-rounded">
-		</div>
-		<div class="col-md-8 col-sm-12">
-			
-			<div>
-				<h3 class="text-left text-primary">description / synopsis</h3>
-				<p class="text-justify">{{movie.description}}</p>
+		<div class="row">
+			<div class="col-md-4 col-sm-12">
+				<img ng-src="{{movie.image}}" class="img-rounded">
 			</div>
-			
-			<div>
-				<h3 class="text-left text-primary">Trailer</h3>
-				<iframe src="{{movie.trailerUrl}}" class="pull-left" style="width:480px; height:270px" frameborder="0"></iframe>
-				<div class="clearfix"></div>
-			</div>
-
-			<div>
-				<h3 class="text-left text-primary">Comments</h3>
+			<div class="col-md-8 col-sm-12">
+				
 				<div>
-					<form>
-						<div class="form-group">
-							<div class="col-md-2">
-								
-							</div>
-							<div class="col-md-10">
-								<input type="text" ng-model="newComment.content" placeholder="send a new comment !">
-							</div>
-						</div>
-					</form>
+					<h3 class="text-left text-primary">description / synopsis</h3>
+					<p class="text-justify">{{movie.description}}</p>
+				</div>
+				
+				<div>
+					<h3 class="text-left text-primary">Trailer</h3>
+					<iframe src="{{movie.trailerUrl}}" class="pull-left" style="width:480px; height:270px" frameborder="0"></iframe>
+					<div class="clearfix"></div>
 				</div>
 
-				<ul class="list-group">
-					<li class="list-group-item comment-item" ng-repeat="comment in comments">
-						{{comment.content}}
-					</li>
-				</ul>
-				<p class="text-left" ng-show="comments.length == 0">No comments yet !</p>
-			</div>
+				<div>
+					<h3 class="text-left text-primary">Comments ({{movie.comments.count}})</h3>
+					<div>
+						<form ng-submit="sendComment()">
+							<div class="form-group">
+								<div class="col-md-2">
+									Jean Bon
+								</div>
+								<div class="col-md-10">
+									<input type="text" ng-model="newComment.content" placeholder="send a new comment !">
+								</div>
+							</div>
+						</form>
+					</div>
 
+					<ul __class="list-group">
+						<li __class="list-group-item comment-item" ng-repeat="comment in movie.comments.items">
+							{{comment.content}}
+						</li>
+					</ul>
+					<p class="text-left" ng-show="comments.length == 0">No comments yet !</p>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </div>

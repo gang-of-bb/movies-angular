@@ -1,34 +1,49 @@
-<div class="page-header">
-	<h1 class="text-info">movies ({{movies.length}})</h1>
-</div>
+<div class="animated fadeIn">
+	<div class="page-header">
+		<h1 class="text-info">movies ({{movies.length}})</h1>
+	</div>
 
-<div class="col-sm-12 col-md-12">
-  <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default" ng-repeat="category in categories" ng-click="getMoviesByCategory(category.id)">
-      <input type="radio" name="categoryChooser"> {{category.name}} <span class="badge">{{category.movies}}</span>
-    </label>
-    <label class="btn btn-primary" ng-click="getAllMovies()">
-      <input type="radio" name="categoryChooser"> All
-    </label>
-  </div>
-</div>
+	<div class="row">
+		<form ng-submit="getMoviesByQuery()" id="searchForm">
+			<div class="col-sm-12 col-md-12">
+				<div class="input-group">
+					<input placeholder="search movies by title" ng-model="searchForm.keyword" name="keyword" type="search" class="form-control">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="button" ng-click="getMoviesByQuery()">Search</button>
+					</span>
+				</div>
+			</div>
 
-<div>
-  <div ng-repeat="movie in movies">
-      <div class="panel panel-default pull-left movie-item">
-        <div class="panel-heading"><h3 class="text-primary">{{movie.title}}</h3></div>
-        <div class="panel-body">
-          <img ng-src="{{movie.image}}" class="img-rounded">
-        </div>
-        <div class="panel-footer movie-item-footer">
-          <div class="btn-group">
-            <a href="#/movies/{{movie.id}}" class="btn btn-info btn-sm">show</a>
-          </div>
-        </div>
-      </div>
-  </div>
+			<div class="col-sm-12 col-md-12">
+				<div class="btn-group" data-toggle="buttons">
+					<label ng-repeat="category in categories" class="btn btn-default" ng-click="getMoviesByQuery(category.id)">
+						<input value="{{category.id}}" type="radio" name="categoryId"> {{category.name}} <span class="badge">{{category.movies}}</span>
+					</label>
+					<label class="btn btn-primary" ng-click="getMoviesByQuery(null)">
+						<input type="radio" name="categoryId"> All
+					</label>
+				</div>
+			</div>
+		</form>
 
-    <div ng-show="movies.length == 0">
-      <h3>No movies in your list</h3>
-    </div>
+		<div>
+			<div ng-repeat="movie in movies">
+				<div class="panel panel-default pull-left movie-item animated fadeIn">
+					<div class="panel-heading"><h3 class="text-primary">{{movie.title}}</h3></div>
+					<div class="panel-body">
+						<img ng-src="{{movie.image}}" class="img-rounded">
+					</div>
+					<div class="panel-footer movie-item-footer">
+						<div class="btn-group">
+							<a href="#/movies/{{movie.id}}" class="btn btn-info btn-sm">show</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="movies.length == 0">
+				<h3>No movies in your list</h3>
+			</div>
+		</div>
+	</div>
 </div>

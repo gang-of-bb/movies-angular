@@ -1,47 +1,38 @@
 define(['app', 'services/movieService', 'services/categoryService'], 
   function(gobbmovies, movieService, categoryService){
 
-	gobbmovies.controller('movieController' , ['$scope', 'movieService', 'categoryService' , 
-    function ($scope, movieService, categoryService) {
+    gobbmovies.controller('movieController' , ['$scope', 'movieService', 'categoryService' , 
+      function ($scope, movieService, categoryService) {
 
-		/**
-		 * Attributes
-		 */
-    	$scope.movies = [];
+      /**
+      * Attributes
+      */
+      $scope.movies = [];
       $scope.categories = [];
+      $scope.searchFilter = null;
+      $scope.searchForm = { keyword : null, categoryId : null };
 
       /**
-       * initialization
-       */
-      movieService.getAll(null, function(data){
-          $scope.movies = data;
-      });
-
-      categoryService.getAll(function(data){
-         $scope.categories = data;
-      });
+      * initialization
+      */
+      $scope.init = function(){
+        movieService.getAll(null, function(data){$scope.movies = data;});
+        categoryService.getAll(function(data){$scope.categories = data;});
+      };
 
       /**
-       * get movies by category id
-       * @param  {[type]} categoryId
+       * get movies by search query
        */
-      $scope.getMoviesByCategory = function(categoryId){
-          var query = '?categoryId='+categoryId;
+      $scope.getMoviesByQuery = function(categoryId){
+          $scope.searchForm.categoryId = categoryId;
+          var query = this.searchForm;
           movieService.getAll(query, function(data){
-              $scope.movies = data;
+            $scope.movies = data;
           });
-      };
+      }
 
-      /**
-       * get all movies
-       */
-      $scope.getAllMovies = function(){
-          movieService.getAll(null, function(data){
-              $scope.movies = data;
-          });
-      };
+      $scope.init();
 
-  	}]);
-
+    }]);
 });
 
