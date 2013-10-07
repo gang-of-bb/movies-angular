@@ -1,8 +1,14 @@
 /**
  * gobbmovies router.
  */
-define(['app', 'controllers/movieController', 'controllers/movieShowController'] , 
-	function (gobbmovies, movieController, movieShowController) {
+define([
+		'app',
+		'controllers/movieController',
+		'controllers/movieShowController',
+		'services/userService',
+		'directives/favoriteMoviesDirective'
+	],
+	function (gobbmovies, movieController, movieShowController, userService) {
 
 	return gobbmovies.config(['$routeProvider', function ($routeProvider) {
 		$routeProvider
@@ -17,6 +23,12 @@ define(['app', 'controllers/movieController', 'controllers/movieShowController']
 			controller: 'movieShowController'
 		}).
 		otherwise({ redirectTo: '/' });
-	}]);
+	}])
+	.run(function($rootScope, userService)
+	{
+		userService.getUser(function(user){
+			$rootScope.user = user;
+		});
+	});
 	
 });

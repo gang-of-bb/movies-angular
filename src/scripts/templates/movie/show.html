@@ -8,6 +8,11 @@
 		<div class="row">
 			<div class="col-md-4 col-sm-12">
 				<img ng-src="{{movie.image}}" class="img-rounded">
+				<br><br>
+				<div>
+					<button ng-show="movie.isliked == false" ng-click="like(true)" class="btn btn-success">Like</button>
+					<button ng-show="movie.isliked == true" ng-click="like(false)" class="btn btn-danger">Dislike</button>
+				</div>
 			</div>
 			<div class="col-md-8 col-sm-12">
 				
@@ -24,22 +29,21 @@
 
 				<div>
 					<h3 class="text-left text-primary">Comments ({{movie.comments.count}})</h3>
-					<div>
-						<form ng-submit="sendComment()">
-							<div class="form-group">
-								<div class="col-md-2">
-									Jean Bon
-								</div>
-								<div class="col-md-10">
-									<input type="text" ng-model="newComment.content" placeholder="send a new comment !">
-								</div>
-							</div>
-						</form>
-					</div>
 
-					<ul __class="list-group">
-						<li __class="list-group-item comment-item" ng-repeat="comment in movie.comments.items">
-							{{comment.content}}
+					<ul class="list-group">
+						<div ng-show="user.username" class="list-group-item" style="height: 60px;">
+							<form ng-submit="sendComment()">
+								<div class="input-group">
+									<input type="text" ng-model="newComment.content" placeholder="{{user.username}} : send a new comment" class="form-control">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit">Send</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<li style="min-height: 45px;" class="list-group-item comment-item" ng-repeat="comment in movie.comments.items">
+							<div class="pull-left">{{comment.author.username}} : {{comment.content}}</div>
+							<div ng-if="comment.authorId == user.id" class="pull-right"><span class="glyphicon glyphicon-remove-circle" ng-click="removeComment(comment)" style="cursor: pointer;"></span></div>
 						</li>
 					</ul>
 					<p class="text-left" ng-show="comments.length == 0">No comments yet !</p>

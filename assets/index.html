@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Gobb movies</title>
-    	<link rel="stylesheet" type="text/css" href="https://rawgithub.com/gang-of-bb/movies-assets/master/build/gobbmovies.css">
 		<link rel="stylesheet" href="/styles/application.css">
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/daneden/animate.css/master/animate.min.css">
   </head>
@@ -17,14 +16,16 @@
 				</a>
 			</div>
 			<div class="navbar-right header-user">
-				<span class="navbar-text"><span class="glyphicon glyphicon-user"></span> Jean Bon</span>
+				<span class="navbar-text"><span class="glyphicon glyphicon-user"></span> {{user.username}}</span>
 			</div>
 		</nav>
 		<div id="content">
 			<div id="mainContent">
 				<div ng-view ></div>
 			</div>
-			<div id="sideContent"></div>
+			<div id="sideContent">
+				<div ng-FavoriteMoviesDirective ></div>
+			</div>
 		</div>
 	</div>
 

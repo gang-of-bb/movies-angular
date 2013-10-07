@@ -1,7 +1,7 @@
 define(['app', 'services/movieService', 'services/commentService'], function(gobbmovies, movieService, commentService){
 
-	gobbmovies.controller('movieShowController' , ['$scope', '$routeParams', 'movieService', 'commentService', 
-		function ($scope, $routeParams, movieService, commentService) {
+	gobbmovies.controller('movieShowController' , ['$rootScope', '$scope', '$routeParams', 'movieService', 'commentService', 
+		function ($rootScope, $scope, $routeParams, movieService, commentService) {
 
 		var movieId = $routeParams.id;
 
@@ -28,9 +28,34 @@ define(['app', 'services/movieService', 'services/commentService'], function(gob
 		/**
 		 * remove own comment
 		 */
-		$scope.removeComment = function(){
-			
+		$scope.removeComment = function(comment){
+			commentService.delete(comment, function(){
+				$scope.movie.comments.items.splice($scope.movie.comments.items.indexOf(comment), 1);
+			});
 		};
+
+		/**
+		 * toggle id 
+		 * @param  {[type]} islike [description]
+		 * @return {[type]}        [description]
+		 */
+		$scope.like = function(islike){
+			if(islike){
+				movieService.like(movieId, function(data){
+					if(data == 'liked'){
+						$scope.movie.isliked = true; 
+						$rootScope.$broadcast('handleBroadcast');
+					}
+				});
+			}else{
+				movieService.dislike(movieId, function(data){ 
+					if(data == 'disliked'){
+						$scope.movie.isliked = false;
+					}
+				});
+			}
+		}
+
   	}]);
 
 });

@@ -5,7 +5,7 @@ define(['app'], function(gobbmovies){
 		var host = 'http://gangofbb.bhtz.fr/api/movies';
 
 		/**
-		 * get all movie
+		 * get all movie.
 		 * @return {[type]}
 		 */
 		this.getAll = function(query, callback){
@@ -15,12 +15,34 @@ define(['app'], function(gobbmovies){
 		};
 
 		/**
-		 * get movie by Id
+		 * get movie by Id.
 		 * @param  {Integer}   movieId
 		 * @param  {Function} callback
 		 */
 		this.get = function(movieId, callback){
-			$http.get(host+'/'+movieId).success(function(data, status, headers, config){
+			$http.get(host+'/'+movieId, {withCredentials: true}).success(function(data, status, headers, config){
+				callback(data);
+			});
+		};
+
+		/**
+		 * like movie by id.
+		 * @param  {[type]}   movieId
+		 * @param  {Function} callback
+		 */
+		this.like = function(movieId, callback){
+			$http.post(host+'/'+movieId+'/like', {}, {withCredentials: true}).success(function(data, status, headers, config){
+				callback(data);
+			});
+		};
+
+		/**
+		 * dislike movie by id.
+		 * @param  {[type]}   movieId
+		 * @param  {Function} callback
+		 */
+		this.dislike = function(movieId, callback){
+			$http.post(host+'/'+movieId+'/dislike', {}, {withCredentials: true}).success(function(data, status, headers, config){
 				callback(data);
 			});
 		};

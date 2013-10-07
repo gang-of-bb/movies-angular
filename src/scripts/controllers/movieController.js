@@ -28,7 +28,7 @@ define(['app', 'services/movieService', 'services/categoryService'],
           movieService.getAll(this.searchForm, function(data){
             $scope.movies = data;
           });
-      }
+      };
 
       $scope.init();
 
