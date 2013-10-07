@@ -25,8 +25,7 @@ define(['app', 'services/movieService', 'services/categoryService'],
        */
       $scope.getMoviesByQuery = function(categoryId){
           $scope.searchForm.categoryId = categoryId;
-          var query = this.searchForm;
-          movieService.getAll(query, function(data){
+          movieService.getAll(this.searchForm, function(data){
             $scope.movies = data;
           });
       }
