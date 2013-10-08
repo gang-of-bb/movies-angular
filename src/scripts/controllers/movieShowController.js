@@ -44,13 +44,14 @@ define(['app', 'services/movieService', 'services/commentService'], function(gob
 				movieService.like(movieId, function(data){
 					if(data == 'liked'){
 						$scope.movie.isliked = true; 
-						$rootScope.$broadcast('handleBroadcast');
+						$rootScope.$broadcast('addFavoriteMovie', $scope.movie);
 					}
 				});
 			}else{
 				movieService.dislike(movieId, function(data){ 
 					if(data == 'disliked'){
 						$scope.movie.isliked = false;
+						$rootScope.$broadcast('removeFavoriteMovie', $scope.movie);
 					}
 				});
 			}

@@ -11,5 +11,17 @@ define(['app'], function(gobbmovies){
 				callback(data);
 			});
 		};
+
+		/**
+		 * get favorite movies by user id.
+		 * @param  {[type]}   userId
+		 * @param  {Function} callback
+		 */
+		this.getFavoriteMovies = function(userId, callback){
+			var url = 'http://gangofbb.bhtz.fr/api/users/'+userId+'/movies';
+			$http.get(url, {withCredentials: true}).success(function(data, status, headers, config){
+				callback(data);
+			});
+		};
 	}]);
 });

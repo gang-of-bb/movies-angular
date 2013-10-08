@@ -1,0 +1,8 @@
+<div>
+	<h3>Favorite movies ({{favoriteMovies.length}})</h3>
+	<div class="list-group">
+		<a ng-repeat="movie in favoriteMovies" href="#/movies/{{movie.id}}" class="list-group-item">
+			{{movie.title}}
+		</a>
+	</div>
+</div>

@@ -1,14 +1,45 @@
-define(['app'], function(gobbmovies){
-	gobbmovies.directive('ngFavoriteMoviesDirective', [, function(){
+define(['app', 'services/userService'], function(gobbmovies, userService){
+	gobbmovies.directive('favoriteMovies', function($rootScope, userService){
 	    return {
-	    	restrict: 'A',
-        	controller: function($scope, $attrs) {
-        		alert('directive instantiate');
-            	$scope.$on('handleBroadcast', function() {
-                	alert('broadcast received');
+	    	restrict: 'AEC',
+            replace: true,
+        	link: function($scope, $attrs, $element) {
+                $scope.favoriteMovies = [];
+
+                /**
+                 * watch for rootscope user change.
+                 */
+                $rootScope.$watch('user', function () {
+                    if($rootScope.user){
+                        userService.getFavoriteMovies($rootScope.user.id, function(movies){
+                            $scope.favoriteMovies = movies;
+                        });                        
+                    }
+                });
+
+                /**
+                 * listen for addFavoriteMovie 
+                 * @param  {event} event
+                 * @param  {movie} movie
+                 */
+            	$scope.$on('addFavoriteMovie', function(event, movie) {
+                	$scope.favoriteMovies.push(movie);
             	});
+
+                /**
+                 * listen for removeFavoriteMovie
+                 * @param  {event} event
+                 * @param  {movie} movie
+                 */
+                $scope.$on('removeFavoriteMovie', function(event, movie) {
+                    for(i=0;i<$scope.favoriteMovies.length;i++){
+                        if($scope.favoriteMovies[i].id == movie.id){
+                          $scope.favoriteMovies.splice(i, 1);
+                        }
+                    }
+                });
         	},
-        	template: '<div class="favoriteMovies">List here</div>'
-    	}
-	}]);
+        	templateUrl: '/templates/movie/favoriteMovies.html'
+    	};
+	});
 });
