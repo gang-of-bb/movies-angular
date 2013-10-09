@@ -4,19 +4,24 @@
 		<meta charset="utf-8">
 		<title>Gobb movies</title>
 		<link rel="stylesheet" href="/styles/application.css">
+		<link rel="stylesheet" href="/styles/toastr.css">
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/daneden/animate.css/master/animate.min.css">
   </head>
   <body>
     <div id="viewport">
 		<nav id="header" class="navbar navbar-primary navbar-static-top" role="navigation">
-			<div class="navbar-header">
+			<div class="navbar-header" style="width:300px;">
 				<img src="/images/48/Movie.png" class="header-logo"/>
 				<a class="navbar-brand" href="#/">							
 					Gobb movies
 				</a>
 			</div>
 			<div class="navbar-right header-user">
-				<span class="navbar-text"><span class="glyphicon glyphicon-user"></span> {{user.username}}</span>
+				<a href="#/profile" style="color: white;">
+					<span class="navbar-text">
+						<span class="glyphicon glyphicon-user"></span> {{user.username}}
+					</span>
+				</a>
 			</div>
 		</nav>
 		<div id="content">

@@ -5,8 +5,10 @@ define([
 		'app',
 		'controllers/movieController',
 		'controllers/movieShowController',
+		'controllers/profileController',
 		'services/userService',
-		'directives/favoriteMoviesDirective'
+		'directives/favoriteMoviesDirective',
+		'directives/commentsDirective'
 	],
 	function (gobbmovies, movieController, movieShowController, userService) {
 
@@ -21,6 +23,11 @@ define([
 		{ 
 			templateUrl: '/templates/movie/show.html', 
 			controller: 'movieShowController'
+		}).
+		when('/profile',
+		{ 
+			templateUrl: '/templates/user/profile.html', 
+			controller: 'profileController'
 		}).
 		otherwise({ redirectTo: '/' });
 	}])

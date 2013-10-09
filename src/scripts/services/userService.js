@@ -23,5 +23,16 @@ define(['app'], function(gobbmovies){
 				callback(data);
 			});
 		};
+
+		/**
+		 * update user info
+		 * @param  {[type]}   user
+		 * @param  {Function} callback
+		 */
+		this.update = function(user, callback){
+			$http.put(host, user, {withCredentials: true}).success(function(data, status, headers, config){
+				callback(data);
+			});
+		};
 	}]);
 });

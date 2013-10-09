@@ -1,0 +1,21 @@
+<div>
+	<h3 class="text-left text-primary">Comments ({{comments.count}})</h3>
+
+	<ul class="list-group">
+		<div ng-show="$root.user.username" class="list-group-item" style="height: 60px;">
+			<form ng-submit="sendComment()">
+				<div class="input-group">
+					<input type="text" ng-model="newComment.content" placeholder="{{$root.user.username}} : send a new comment" class="form-control">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="submit">Send</button>
+					</span>
+				</div>
+			</form>
+		</div>
+		<li style="min-height: 45px;" class="list-group-item comment-item" ng-repeat="comment in comments.items">
+			<div class="pull-left">{{comment.author.username}} : {{comment.content}}</div>
+			<div ng-if="comment.authorId == user.id" class="pull-right"><span class="glyphicon glyphicon-remove-circle" ng-click="removeComment(comment)" style="cursor: pointer;"></span></div>
+		</li>
+	</ul>
+	<p class="text-left" ng-show="comments.length == 0">No comments yet !</p>
+</div>

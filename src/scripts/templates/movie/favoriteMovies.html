@@ -1,8 +1,18 @@
 <div>
-	<h3>Favorite movies ({{favoriteMovies.length}})</h3>
+	<h3 style="margin:0; padding: 10px; color: white; background-color:#DC4C18;" class="text-center">
+		Favorite movies ({{favoriteMovies.length}})
+	</h3>
 	<div class="list-group">
-		<a ng-repeat="movie in favoriteMovies" href="#/movies/{{movie.id}}" class="list-group-item">
+		<a ng-repeat="movie in favoriteMovies" href="#/movies/{{movie.id}}" class="list-group-item animated bounceInUp">
 			{{movie.title}}
 		</a>
+	</div>
+	<div ng-show="favoriteMovies.length == 0">
+		<p>
+			You should to sign in to gangofbb to see your favorite movies.
+		</p>
+		<p>
+			<a class="btn btn-primary" href="http://gangofbb.bhtz.fr/account/login">Sign In</a>
+		</p>
 	</div>
 </div>
