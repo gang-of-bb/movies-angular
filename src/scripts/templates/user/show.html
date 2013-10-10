@@ -1,0 +1,13 @@
+<div class="page-header">
+	<h1 class="text-primary">{{profile.firstname}} {{profile.lastname}} <small>as {{profile.username}}</small></h1>
+</div>
+
+<div>
+	<address>
+		<strong>{{profile.city}}</strong><br>
+		{{profile.birthday | date:'fullDate'}}<br>
+		<a href="mailto:{{profile.email}}">{{profile.email}}</a>
+	</address>
+
+	<div ng-comments comments="profile.comments" user-id="profile.id" movie-id="null"></div>
+</div>

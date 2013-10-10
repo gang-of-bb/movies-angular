@@ -10,7 +10,7 @@ define([
 	            scope: { 
 	            	comments: '=',
 	            	movieId: "=",
-	            	userId: "=",
+	            	userId: "="
 	            },
 	        	link: function($scope, $element, $attrs) {
 

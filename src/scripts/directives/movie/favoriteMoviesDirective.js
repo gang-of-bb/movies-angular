@@ -1,5 +1,5 @@
 define(['app', 'services/userService'], function(gobbmovies, userService){
-	gobbmovies.directive('favoriteMovies', function($rootScope, userService){
+	gobbmovies.directive('ngFavoriteMovies', function($rootScope, userService){
 	    return {
 	    	restrict: 'AEC',
             replace: true,

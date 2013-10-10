@@ -3,12 +3,12 @@
  */
 define([
 		'app',
-		'controllers/movieController',
-		'controllers/movieShowController',
-		'controllers/profileController',
+		'controllers/movie/movieController',
+		'controllers/movie/movieShowController',
+		'controllers/user/profileController',
+		'controllers/user/userShowController',
 		'services/userService',
-		'directives/favoriteMoviesDirective',
-		'directives/commentsDirective'
+		'directives/movie/favoriteMoviesDirective'
 	],
 	function (gobbmovies, movieController, movieShowController, userService) {
 
@@ -28,6 +28,11 @@ define([
 		{ 
 			templateUrl: '/templates/user/profile.html', 
 			controller: 'profileController'
+		}).
+		when('/users/:id',
+		{ 
+			templateUrl: '/templates/user/show.html',
+			controller: 'userShowController'
 		}).
 		otherwise({ redirectTo: '/' });
 	}])

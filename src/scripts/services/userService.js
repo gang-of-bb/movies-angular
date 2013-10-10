@@ -13,6 +13,18 @@ define(['app'], function(gobbmovies){
 		};
 
 		/**
+		 * get user by id
+		 * @param  {Integer}   userId
+		 * @param  {Function} callback
+		 */
+		this.getUserById = function(userId, callback){
+			var url = "http://gangofbb.bhtz.fr/api/users/"+userId;
+			$http.get(url, {withCredentials: true}).success(function(data, status, headers, config){
+				callback(data);
+			});
+		};
+
+		/**
 		 * get favorite movies by user id.
 		 * @param  {[type]}   userId
 		 * @param  {Function} callback

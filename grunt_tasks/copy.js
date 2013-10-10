@@ -6,6 +6,7 @@ module.exports = {
 	    {src: '<%= configs.bower %>/angular/angular.js', dest: '<%= configs.vendors %>/angular.js'},
 	    {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
 	    {src: '<%= configs.bower %>/toastr/toastr.js', dest: '<%= configs.vendors %>/toastr.js'},
+	    {src: '<%= configs.bower %>/ngInfiniteScroll/ng-infinite-scroll.js', dest: '<%= configs.vendors %>/ng-infinite-scroll.js'},
 
 		{expand: true, cwd: 'src/scripts/',src: ['**'], dest: '<%= configs.wwwFolder %>/scripts/'},	            
 
