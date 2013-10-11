@@ -39,7 +39,9 @@ define([
 	.run(function($rootScope, userService)
 	{
 		userService.getUser(function(user){
-			$rootScope.user = user;
+			if(user){
+				$rootScope.user = user;	
+			}
 		});
 	});
 	

@@ -8,7 +8,11 @@ define(['app'], function(gobbmovies){
 		 */
 		this.getUser = function(callback){
 			$http.get(host, {withCredentials: true}).success(function(data, status, headers, config){
-				callback(data);
+				if(status == 403){
+					callback(null);
+				}else{
+					callback(data);
+				}
 			});
 		};
 

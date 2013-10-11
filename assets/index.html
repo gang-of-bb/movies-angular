@@ -17,7 +17,7 @@
 				</a>
 			</div>
 			<div class="navbar-right header-user">
-				<a href="#/profile" style="color: white;">
+				<a ng-show="$root.user" href="#/profile" style="color: white;">
 					<span class="navbar-text">
 						<span class="glyphicon glyphicon-user"></span> {{user.username}}
 					</span>
