@@ -2,10 +2,9 @@
  * gobbmovies angular application.
  */
 define([
-		'angular',
-		'ng-infinite-scroll'
+		'angular'
 	], function(angular, infiniteScroll){
-	var gobbmovies = angular.module('gobbmovies', ['infinite-scroll']);
+	var gobbmovies = angular.module('gobbmovies', []);
 
 	gobbmovies.config(['$httpProvider', function($httpProvider) {
 	        $httpProvider.defaults.useXDomain = true;

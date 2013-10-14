@@ -5,13 +5,13 @@ require.config({
 		'angular' : '/scripts/vendors/angular',
 		'bootstrap' : '/scripts/vendors/bootstrap',
 		'toastr' : '/scripts/vendors/toastr',
-		'ng-infinite-scroll' : '/scripts/vendors/ng-infinite-scroll'
+		'nicescroll' : '/scripts/vendors/jquery.nicescroll'
 	},
 	shim: {
     	'angular' : {'exports' : 'angular'},
     	'jQuery': {'exports' : 'jQuery'},
     	'toastr': {'exports' : 'toastr'},
-    	'ng-infinite-scroll': {'exports' : 'ng-infinite-scroll'},
+    	'nicescroll': {'exports' : 'nicescroll'},
     	'bootstrap': ['jQuery']
     }
 });

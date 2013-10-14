@@ -10,7 +10,7 @@ define(['app', 'services/userService'], function(gobbmovies, userService){
                  * watch for rootscope user change.
                  */
                 $rootScope.$watch('user', function () {
-                    if($rootScope.user.username){
+                    if($rootScope.user){
                         userService.getFavoriteMovies($rootScope.user.id, function(movies){
                             $scope.favoriteMovies = movies;
                         });                     

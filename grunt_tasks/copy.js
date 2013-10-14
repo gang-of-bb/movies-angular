@@ -6,7 +6,7 @@ module.exports = {
 	    {src: '<%= configs.bower %>/angular/angular.js', dest: '<%= configs.vendors %>/angular.js'},
 	    {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
 	    {src: '<%= configs.bower %>/toastr/toastr.js', dest: '<%= configs.vendors %>/toastr.js'},
-	    {src: '<%= configs.bower %>/ngInfiniteScroll/ng-infinite-scroll.js', dest: '<%= configs.vendors %>/ng-infinite-scroll.js'},
+	    {src: '<%= configs.bower %>/jquery-nicescroll/jquery.nicescroll.js', dest: '<%= configs.vendors %>/jquery.nicescroll.js'},
 
 		{expand: true, cwd: 'src/scripts/',src: ['**'], dest: '<%= configs.wwwFolder %>/scripts/'},	            
 
@@ -25,6 +25,8 @@ module.exports = {
 	    {src: '<%= configs.bower %>/jquery/jquery.min.js', dest: '<%= configs.vendors %>/jquery.js'},
 	    {src: '<%= configs.bower %>/angular/angular.min.js', dest: '<%= configs.vendors %>/angular.js'},
 	    {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
+	    {src: '<%= configs.bower %>/toastr/toastr.min.js', dest: '<%= configs.vendors %>/toastr.js'},
+	    {src: '<%= configs.bower %>/jquery-nicescroll/jquery.nicescroll.min.js', dest: '<%= configs.vendors %>/jquery.nicescroll.js'},
 
 	    {src: '<%= configs.bower %>/bootstrap/dist/css/bootstrap.css', dest: '<%= configs.wwwFolder %>/styles/bootstrap.css'},
 	    {expand: true, cwd: '<%= configs.bower %>/bootstrap/dist/fonts/', src: ['**'], dest: '<%= configs.wwwFolder %>/fonts/'},

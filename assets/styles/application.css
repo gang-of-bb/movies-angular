@@ -10,6 +10,11 @@
 	height: 260px;
 	position: relative;
 }
+
+.movie-item:hover {
+  border: 2px solid #DC4C18;
+}
+
 .movie-item .movie-item-footer {
 	position: absolute;
 	bottom: 0;
@@ -7523,7 +7528,7 @@ td.visible-print {
   background-color: #fff;
   border: #ccc solid 1px;
   padding: 10px 16px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 /* line 40, ../src/sass/gobbmovies/layout/_layout.scss */

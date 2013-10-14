@@ -1,5 +1,5 @@
 <div>
-	<div class="row">
+	<div  class="row">
 		<form ng-submit="getMoviesByQuery()" id="searchForm">
 			<div class="col-sm-12 col-md-12">
 				<div class="input-group">
@@ -22,19 +22,20 @@
 			</div>
 		</form>
 
-		<div style="margin-top:20px;" class="animated fadeIn">
+		<div ng-nice-scroll when-scrolled="getNextMovies()" distance="mavariable" style="margin-top:20px; overflow: auto; height:750px;" class="animated fadeIn">
 			<div ng-repeat="movie in movies">
-				<div class="panel panel-default pull-left movie-item animated fadeIn">
-					<div class="panel-heading"><h3 class="text-primary">{{movie.title}}</h3></div>
-					<div class="panel-body">
-						<img ng-src="{{movie.image}}" class="img-rounded">
-					</div>
-					<div class="panel-footer movie-item-footer">
-						<div class="btn-group">
-							<a href="#/movies/{{movie.id}}" class="btn btn-info btn-sm">show</a>
+				<a href="#/movies/{{movie.id}}">
+					<div class="panel panel-default pull-left movie-item animated fadeIn">
+						<div class="panel-heading"><h3 class="text-primary">{{movie.title}}</h3></div>
+						<div class="panel-body">
+							<img ng-src="{{movie.image}}" class="img-rounded">
+						</div>
+						<div class="panel-footer movie-item-footer">
+							<span class="glyphicon glyphicon-star">{{movie.rate}}</span>
+							<span class="glyphicon glyphicon-user">{{movie.comments.count}}</span>
 						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
 			<div ng-show="movies.length == 0">
@@ -43,5 +44,3 @@
 		</div>
 	</div>
 </div>
-
-<div infinite-scroll="getNextMovies()" infinite-scroll-immediate-check="false" infinite-scroll-distance="3"></div>
