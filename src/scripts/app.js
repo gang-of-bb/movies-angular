@@ -3,7 +3,7 @@
  */
 define([
 		'angular'
-	], function(angular, infiniteScroll){
+	], function(angular){
 	var gobbmovies = angular.module('gobbmovies', []);
 
 	gobbmovies.config(['$httpProvider', function($httpProvider) {
