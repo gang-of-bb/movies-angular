@@ -36,12 +36,15 @@ define([
                 });
             }
         ])
-            .run(function($rootScope, userService) {
-                userService.getUser(function(user) {
-                    if (user) {
-                        $rootScope.user = user;
-                    }
-                });
-            });
+            .run(['$rootScope', 'userService',
+                function($rootScope, userService) {
+
+                    userService.getUser(function(user) {
+                        if (user) {
+                            $rootScope.user = user;
+                        }
+                    });
+                }
+            ]);
 
     });

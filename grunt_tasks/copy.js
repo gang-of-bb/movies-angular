@@ -79,6 +79,11 @@ module.exports = {
                 src: ['**'],
                 dest: 'build/'
             }, {
+                expand: true,
+                cwd: '<%= configs.templatesSrc %>/',
+                src: ['**'],
+                dest: 'build/templates'
+            }, {
                 src: '<%= configs.bower %>/animate.css/animate.css',
                 dest: '<%= configs.wwwFolder %>/styles/animate.css'
             }
