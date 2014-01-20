@@ -1,9 +1,19 @@
 module.exports = {
-	server: {
-		options: {
-		  	port: 3000,
-		  	base: 'www',
-			keepalive: true
-		}
-	}
-}
+    debug: {
+        options: {
+            port: '<%= configs.port %>',
+            open: true,
+            target: 'http://localhost:<%= configs.port %>',
+            base: 'www'
+        }
+    },
+    release: {
+        options: {
+            port: '<%= configs.port %>',
+            open: true,
+            target: 'http://localhost:<%= configs.port %>',
+            base: 'build',
+            keepalive: true
+        }
+    }
+};

@@ -1,40 +1,87 @@
 module.exports = {
-	dev: {
-	  files: [
-	    {src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.js', dest: '<%= configs.vendors %>/bootstrap.js'},
-	    {src: '<%= configs.bower %>/jquery/jquery.js', dest: '<%= configs.vendors %>/jquery.js'},
-	    {src: '<%= configs.bower %>/angular/angular.js', dest: '<%= configs.vendors %>/angular.js'},
-	    {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
-	    {src: '<%= configs.bower %>/toastr/toastr.js', dest: '<%= configs.vendors %>/toastr.js'},
-	    {src: '<%= configs.bower %>/jquery-nicescroll/jquery.nicescroll.js', dest: '<%= configs.vendors %>/jquery.nicescroll.js'},
+    vendors: {
+        files: [
+            // bower vendors
+            {
+                src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.js',
+                dest: '<%= configs.vendors %>/bootstrap.js'
+            }, {
+                src: '<%= configs.bower %>/jquery/jquery.js',
+                dest: '<%= configs.vendors %>/jquery.js'
+            }, {
+                src: '<%= configs.bower %>/angular/angular.js',
+                dest: '<%= configs.vendors %>/angular.js'
+            }, {
+                src: '<%= configs.bower %>/requirejs/require.js',
+                dest: '<%= configs.vendors %>/require.js'
+            }, {
+                src: '<%= configs.bower %>/toastr/toastr.js',
+                dest: '<%= configs.vendors %>/toastr.js'
+            }, {
+                src: '<%= configs.bower %>/jquery-nicescroll/jquery.nicescroll.js',
+                dest: '<%= configs.vendors %>/jquery.nicescroll.js'
+            },
 
-		{expand: true, cwd: 'src/scripts/',src: ['**'], dest: '<%= configs.wwwFolder %>/scripts/'},	            
+            {
+                src: '<%= configs.bower %>/bootstrap/dist/css/bootstrap.css',
+                dest: '<%= configs.wwwFolder %>/styles/bootstrap.css'
+            }, {
+                src: '<%= configs.bower %>/toastr/toastr.css',
+                dest: '<%= configs.wwwFolder %>/styles/toastr.css'
+            }, {
+                expand: true,
+                cwd: '<%= configs.bower %>/bootstrap/dist/fonts/',
+                src: ['**'],
+                dest: '<%= configs.wwwFolder %>/fonts/'
+            },
 
-	    {src: '<%= configs.bower %>/bootstrap/dist/css/bootstrap.css', dest: '<%= configs.wwwFolder %>/styles/bootstrap.css'},
-	    {src: '<%= configs.bower %>/toastr/toastr.css', dest: '<%= configs.wwwFolder %>/styles/toastr.css'},
-	    {expand: true, cwd: '<%= configs.bower %>/bootstrap/dist/fonts/', src: ['**'], dest: '<%= configs.wwwFolder %>/fonts/'},
-
-	    {expand: true, cwd: '<%= configs.assetsFolder %>/', src: ['**'], dest: '<%= configs.wwwFolder %>/'},
-
-	    {expand: true, cwd: '<%= configs.templatesSrc %>', src: ['**'], dest: '<%= configs.templatesDest %>'}
-	  ]
-	},
-	release: {
-	  files: [
-	    {src: '<%= configs.bower %>/bootstrap/dist/js/bootstrap.min.js', dest: '<%= configs.vendors %>/bootstrap.js'},
-	    {src: '<%= configs.bower %>/jquery/jquery.min.js', dest: '<%= configs.vendors %>/jquery.js'},
-	    {src: '<%= configs.bower %>/angular/angular.min.js', dest: '<%= configs.vendors %>/angular.js'},
-	    {src: '<%= configs.bower %>/requirejs/require.js', dest: '<%= configs.vendors %>/require.js'},
-	    {src: '<%= configs.bower %>/toastr/toastr.min.js', dest: '<%= configs.vendors %>/toastr.js'},
-	    {src: '<%= configs.bower %>/jquery-nicescroll/jquery.nicescroll.min.js', dest: '<%= configs.vendors %>/jquery.nicescroll.js'},
-
-	    {src: '<%= configs.bower %>/bootstrap/dist/css/bootstrap.css', dest: '<%= configs.wwwFolder %>/styles/bootstrap.css'},
-	    {expand: true, cwd: '<%= configs.bower %>/bootstrap/dist/fonts/', src: ['**'], dest: '<%= configs.wwwFolder %>/fonts/'},
-
-	    {expand: true, cwd: '<%= configs.assetsFolder %>/', src: ['**'], dest: '<%= configs.wwwFolder %>/'},
-
-	    {expand: true, cwd: '<%= configs.templatesSrc %>', src: ['**'], dest: '<%= configs.templatesDest %>'}
-	  ]
-	}
-
-}
+            {
+                expand: true,
+                cwd: '<%= configs.templatesSrc %>',
+                src: ['**'],
+                dest: '<%= configs.templatesDest %>'
+            }
+        ]
+    },
+    src: {
+        files: [
+            // application scripts
+            {
+                expand: true,
+                cwd: 'src/scripts/',
+                src: ['**'],
+                dest: '<%= configs.wwwFolder %>/scripts/'
+            },
+        ]
+    },
+    assets: {
+        files: [
+            // application assets
+            {
+                expand: true,
+                cwd: '<%= configs.assetsFolder %>/',
+                src: ['**'],
+                dest: '<%= configs.wwwFolder %>/'
+            },
+        ]
+    },
+    production: {
+        files: [
+            // application assets
+            {
+                expand: true,
+                cwd: '<%= configs.bower %>/bootstrap/dist/fonts/',
+                src: ['**'],
+                dest: 'build/fonts/'
+            }, {
+                expand: true,
+                cwd: '<%= configs.assetsFolder %>/',
+                src: ['**'],
+                dest: 'build/'
+            }, {
+                src: '<%= configs.bower %>/animate.css/animate.css',
+                dest: '<%= configs.wwwFolder %>/styles/animate.css'
+            }
+        ]
+    }
+};
