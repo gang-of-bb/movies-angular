@@ -5,5 +5,5 @@ module.exports = {
     vendors: 'www/scripts/vendors',
     templatesDest: 'www/templates/',
     templatesSrc: 'src/scripts/templates/',
-    port: 3000
+    port: 3001
 }

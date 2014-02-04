@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>router.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="app.html">
+                app.js
+              </a>
+            
+              
+              <a class="source" href="movieController.html">
+                movieController.js
+              </a>
+            
+              
+              <a class="source" href="movieShowController.html">
+                movieShowController.js
+              </a>
+            
+              
+              <a class="source" href="profileController.html">
+                profileController.js
+              </a>
+            
+              
+              <a class="source" href="userShowController.html">
+                userShowController.js
+              </a>
+            
+              
+              <a class="source" href="commentsDirective.html">
+                commentsDirective.js
+              </a>
+            
+              
+              <a class="source" href="favoriteMoviesDirective.html">
+                favoriteMoviesDirective.js
+              </a>
+            
+              
+              <a class="source" href="niceScrollDirective.html">
+                niceScrollDirective.js
+              </a>
+            
+              
+              <a class="source" href="userFormDirective.html">
+                userFormDirective.js
+              </a>
+            
+              
+              <a class="source" href="whenScrolledDirective.html">
+                whenScrolledDirective.js
+              </a>
+            
+              
+              <a class="source" href="kernel.html">
+                kernel.js
+              </a>
+            
+              
+              <a class="source" href="require-config.html">
+                require-config.js
+              </a>
+            
+              
+              <a class="source" href="router.html">
+                router.js
+              </a>
+            
+              
+              <a class="source" href="categoryService.html">
+                categoryService.js
+              </a>
+            
+              
+              <a class="source" href="commentService.html">
+                commentService.js
+              </a>
+            
+              
+              <a class="source" href="movieService.html">
+                movieService.js
+              </a>
+            
+              
+              <a class="source" href="userService.html">
+                userService.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>router.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
+ * gobbmovies router.
+ */</span>
+define([
+        <span class="hljs-string">'app'</span>,
+        <span class="hljs-string">'controllers/movie/movieController'</span>,
+        <span class="hljs-string">'controllers/movie/movieShowController'</span>,
+        <span class="hljs-string">'controllers/user/profileController'</span>,
+        <span class="hljs-string">'controllers/user/userShowController'</span>,
+        <span class="hljs-string">'services/userService'</span>,
+        <span class="hljs-string">'directives/movie/favoriteMoviesDirective'</span>
+    ],
+    <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(gobbmovies, movieController, movieShowController, userService)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Define application router.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">return</span> gobbmovies.config([<span class="hljs-string">'$routeProvider'</span>,
+            <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($routeProvider)</span> {</span>
+                $routeProvider
+                    .when(<span class="hljs-string">'/'</span>, {
+                        controller: <span class="hljs-string">'movieController'</span>,
+                        templateUrl: <span class="hljs-string">'/templates/movie/index.html'</span>
+                    }).
+                when(<span class="hljs-string">'/movies/:id'</span>, {
+                    templateUrl: <span class="hljs-string">'/templates/movie/show.html'</span>,
+                    controller: <span class="hljs-string">'movieShowController'</span>
+                }).
+                when(<span class="hljs-string">'/profile'</span>, {
+                    templateUrl: <span class="hljs-string">'/templates/user/profile.html'</span>,
+                    controller: <span class="hljs-string">'profileController'</span>
+                }).
+                when(<span class="hljs-string">'/users/:id'</span>, {
+                    templateUrl: <span class="hljs-string">'/templates/user/show.html'</span>,
+                    controller: <span class="hljs-string">'userShowController'</span>
+                }).
+                otherwise({
+                    redirectTo: <span class="hljs-string">'/'</span>
+                });
+            }
+        ])</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Get user after application start.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        .run([<span class="hljs-string">'$rootScope'</span>, <span class="hljs-string">'userService'</span>,
+            <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($rootScope, userService)</span> {</span>
+
+                userService.getUser(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user)</span> {</span>
+                    <span class="hljs-keyword">if</span> (user) {
+                        $rootScope.user = user;
+                    }
+                });
+            }
+        ]);
+
+    });</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

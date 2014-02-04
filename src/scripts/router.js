@@ -12,6 +12,9 @@ define([
     ],
     function(gobbmovies, movieController, movieShowController, userService) {
 
+        //
+        // Define application router.
+        //
         return gobbmovies.config(['$routeProvider',
             function($routeProvider) {
                 $routeProvider
@@ -36,15 +39,19 @@ define([
                 });
             }
         ])
-            .run(['$rootScope', 'userService',
-                function($rootScope, userService) {
 
-                    userService.getUser(function(user) {
-                        if (user) {
-                            $rootScope.user = user;
-                        }
-                    });
-                }
-            ]);
+        //
+        // Get user after application start.
+        //
+        .run(['$rootScope', 'userService',
+            function($rootScope, userService) {
+
+                userService.getUser(function(user) {
+                    if (user) {
+                        $rootScope.user = user;
+                    }
+                });
+            }
+        ]);
 
     });

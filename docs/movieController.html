@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>movieController.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="app.html">
+                app.js
+              </a>
+            
+              
+              <a class="source" href="movieController.html">
+                movieController.js
+              </a>
+            
+              
+              <a class="source" href="movieShowController.html">
+                movieShowController.js
+              </a>
+            
+              
+              <a class="source" href="profileController.html">
+                profileController.js
+              </a>
+            
+              
+              <a class="source" href="userShowController.html">
+                userShowController.js
+              </a>
+            
+              
+              <a class="source" href="commentsDirective.html">
+                commentsDirective.js
+              </a>
+            
+              
+              <a class="source" href="favoriteMoviesDirective.html">
+                favoriteMoviesDirective.js
+              </a>
+            
+              
+              <a class="source" href="niceScrollDirective.html">
+                niceScrollDirective.js
+              </a>
+            
+              
+              <a class="source" href="userFormDirective.html">
+                userFormDirective.js
+              </a>
+            
+              
+              <a class="source" href="whenScrolledDirective.html">
+                whenScrolledDirective.js
+              </a>
+            
+              
+              <a class="source" href="kernel.html">
+                kernel.js
+              </a>
+            
+              
+              <a class="source" href="require-config.html">
+                require-config.js
+              </a>
+            
+              
+              <a class="source" href="router.html">
+                router.js
+              </a>
+            
+              
+              <a class="source" href="categoryService.html">
+                categoryService.js
+              </a>
+            
+              
+              <a class="source" href="commentService.html">
+                commentService.js
+              </a>
+            
+              
+              <a class="source" href="movieService.html">
+                movieService.js
+              </a>
+            
+              
+              <a class="source" href="userService.html">
+                userService.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>movieController.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define([
+        <span class="hljs-string">'app'</span>,
+        <span class="hljs-string">'services/movieService'</span>,
+        <span class="hljs-string">'services/categoryService'</span>,
+        <span class="hljs-string">'toastr'</span>,
+        <span class="hljs-string">'directives/whenScrolledDirective'</span>,
+        <span class="hljs-string">'directives/niceScrollDirective'</span>
+    ],
+    <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(gobbmovies, movieService, categoryService, toastr, whenScrolledDirective, niceScrollDirective)</span> {</span>
+
+        gobbmovies.controller(<span class="hljs-string">'movieController'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'movieService'</span>, <span class="hljs-string">'categoryService'</span>,
+            <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($scope, movieService, categoryService)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Attributes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $scope.movies = [];
+                $scope.categories = [];
+                $scope.searchFilter = <span class="hljs-literal">null</span>;
+                $scope.searchForm = {
+                    keyword: <span class="hljs-literal">null</span>,
+                    categoryId: <span class="hljs-literal">null</span>,
+                    offset: <span class="hljs-number">0</span>,
+                    limit: <span class="hljs-number">12</span>
+                };
+                <span class="hljs-keyword">var</span> endOfMoviesData = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">var</span> currentOffset = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>initialization.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $scope.init = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+                    movieService.getAll({
+                        offset: <span class="hljs-number">0</span>,
+                        limit: <span class="hljs-number">12</span>
+                    }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+                        $scope.movies = data;
+                        currentOffset = data.length;
+                        endOfMoviesData = data.length == <span class="hljs-number">0</span>;
+                    });
+                    categoryService.getAll(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+                        $scope.categories = data;
+                    });
+                };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>get movies by search query.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $scope.getMoviesByQuery = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(categoryId)</span> {</span>
+                    $scope.searchForm.categoryId = categoryId;
+                    movieService.getAll(<span class="hljs-keyword">this</span>.searchForm, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+                        $scope.movies = data;
+                        currentOffset = data.length;
+                        endOfMoviesData = data.length == <span class="hljs-number">0</span>;
+                    });
+                };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>get next movies.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $scope.getNextMovies = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+                    <span class="hljs-keyword">var</span> query = {
+                        keyword: <span class="hljs-keyword">this</span>.searchForm.keyword,
+                        categoryId: <span class="hljs-keyword">this</span>.searchForm.categoryId,
+                        offset: currentOffset,
+                        limit: <span class="hljs-number">12</span>
+                    };
+
+                    <span class="hljs-keyword">if</span> (!endOfMoviesData) {
+                        movieService.getAll(query, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+                            <span class="hljs-keyword">if</span> (data.length &gt; <span class="hljs-number">0</span>) {
+                                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; data.length; i++) {
+                                    $scope.movies.push(data[i]);
+                                };
+                                currentOffset = currentOffset + <span class="hljs-number">12</span>;
+                            } <span class="hljs-keyword">else</span> {
+                                endOfMoviesData = <span class="hljs-literal">true</span>;
+                                toastr.warning(<span class="hljs-string">'no more movies for this criteria !'</span>, <span class="hljs-string">'gangofbb'</span>);
+                            }
+                        });
+                    }
+                };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Run initialize function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $scope.init();
+            }
+        ]);
+    });</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

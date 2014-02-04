@@ -15,5 +15,14 @@ module.exports = {
             base: 'build',
             keepalive: true
         }
+    },
+    docs: {
+        options: {
+            port: '<%= configs.port %>',
+            open: true,
+            target: 'http://localhost:<%= configs.port %>',
+            base: 'docs',
+            keepalive: true
+        }
     }
 };

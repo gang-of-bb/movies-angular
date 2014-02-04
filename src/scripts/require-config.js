@@ -1,3 +1,6 @@
+//
+// Requirejs configuration.
+//
 require.config({
     baseUrl: '/scripts/',
     paths: {

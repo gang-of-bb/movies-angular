@@ -8,9 +8,9 @@ define(['app', 'services/userService'], function(gobbmovies, userService) {
                 link: function($scope, $attrs, $element) {
                     $scope.favoriteMovies = [];
 
-                    /**
-                     * watch for rootscope user change.
-                     */
+                    //
+                    // watch for rootscope user change.
+                    //
                     $rootScope.$watch('user', function() {
                         if ($rootScope.user) {
                             userService.getFavoriteMovies($rootScope.user.id, function(movies) {
@@ -19,20 +19,16 @@ define(['app', 'services/userService'], function(gobbmovies, userService) {
                         }
                     });
 
-                    /**
-                     * listen for addFavoriteMovie
-                     * @param  {event} event
-                     * @param  {movie} movie
-                     */
+                    //
+                    // listen for addFavoriteMovie.
+                    //
                     $scope.$on('addFavoriteMovie', function(event, movie) {
                         $scope.favoriteMovies.push(movie);
                     });
 
-                    /**
-                     * listen for removeFavoriteMovie
-                     * @param  {event} event
-                     * @param  {movie} movie
-                     */
+                    //
+                    // listen for removeFavoriteMovie.
+                    //
                     $scope.$on('removeFavoriteMovie', function(event, movie) {
                         for (i = 0; i < $scope.favoriteMovies.length; i++) {
                             if ($scope.favoriteMovies[i].id == movie.id) {
@@ -41,6 +37,8 @@ define(['app', 'services/userService'], function(gobbmovies, userService) {
                         }
                     });
                 },
+
+                // Associated template url.
                 templateUrl: '/templates/movie/favoriteMovies.html'
             };
         }

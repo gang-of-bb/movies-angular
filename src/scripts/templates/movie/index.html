@@ -22,9 +22,8 @@
 			</div>
 		</form>
 
-		<div ng-nice-scroll when-scrolled="getNextMovies()" distance="mavariable" style="margin-top:20px; overflow: auto; height:750px;" class="animated fadeIn">
-			<div ng-repeat="movie in movies">
-				<a href="#/movies/{{movie.id}}">
+		<div ng-nice-scroll when-scrolled="getNextMovies()" distance="mavariable" style="margin-top:20px; overflow: auto;" class="animated fadeIn">
+				<a href="#/movies/{{movie.id}}" ng-repeat="movie in movies">
 					<div class="panel panel-default pull-left movie-item animated fadeIn">
 						<div class="panel-heading"><h3 class="text-primary">{{movie.title}}</h3></div>
 						<div class="panel-body">
@@ -36,7 +35,6 @@
 						</div>
 					</div>
 				</a>
-			</div>
 
 			<div ng-show="movies.length == 0">
 				<h3>No movies in your list</h3>
